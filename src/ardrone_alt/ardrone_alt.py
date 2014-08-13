@@ -17,7 +17,7 @@ class ArdroneAlt():
   def navdata_callback(self, data):
     msg = Odometry()
     msg.header.stamp = rospy.Time.now()
-    msg.header.frame_id = "base_footprint"
+    msg.header.frame_id = "base_link"
     msg.pose.pose.position.x = 0.0
     msg.pose.pose.position.y = 0.0
     msg.pose.pose.position.z = data.altd * 1e-3
