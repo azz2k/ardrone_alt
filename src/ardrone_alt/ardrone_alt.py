@@ -1,14 +1,18 @@
-#!/usr/bin/env python
-
 import rospy
+from ardrone_autonomy.msg import Navdata
+from nav_msgs.msg import Odometry
 
 class ArdroneAlt():
   def __init__(self):
     # setup rospy and get parameters
     rospy.init_node("ardronealt")
+    self.adapter = rospy.get_param("~cov_alt", 0.1)
     # setup main loop
-    #self.pub = rospy.Publisher("rssi", RssiMulti, queue_size=10)
-    r = rospy.Rate(self.rate)
+    rospy.Subscriber("ardrone/navdata", Navdata, self.navdata_callback)
+    self.pub = rospy.Publisher("odoalt", Odometry, queue_size=10)
+    r = rospy.Rate(10)
     # main loop
     while not rospy.is_shutdown():
-      pass
+      r.sleep()
+  def navdata_callback(data):
+    print data.altd
