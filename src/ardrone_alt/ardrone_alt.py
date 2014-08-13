@@ -6,7 +6,7 @@ class ArdroneAlt():
   def __init__(self):
     # setup rospy and get parameters
     rospy.init_node("ardronealt")
-    self.adapter = rospy.get_param("~cov_alt", 0.1)
+    self.covalt = rospy.get_param("~cov_alt", 0.1)
     # setup main loop
     rospy.Subscriber("ardrone/navdata", Navdata, self.navdata_callback)
     self.pub = rospy.Publisher("odoalt", Odometry, queue_size=10)
@@ -15,4 +15,20 @@ class ArdroneAlt():
     while not rospy.is_shutdown():
       r.sleep()
   def navdata_callback(self, data):
-    print data.altd
+    msg = Odometry()
+    msg.header.stamp = rospy.Time.now()
+    msg.header.frame_id = "base_footprint"
+    msg.pose.pose.position.x = 0.0
+    msg.pose.pose.position.y = 0.0
+    msg.pose.pose.position.z = data.altd
+    msg.pose.pose.orientation.x = 1 
+    msg.pose.pose.orientation.y = 0 
+    msg.pose.pose.orientation.z = 0 
+    msg.pose.pose.orientation.w = 0 
+    msg.pose.covariance = [99999, 0, 0, 0, 0, 0, 
+      0, 99999, 0, 0, 0, 0, 
+      0, 0, self.covalt, 0, 0, 0, 
+      0, 0, 0, 99999, 0, 0, 
+      0, 0, 0, 0, 99999, 0, 
+      0, 0, 0, 0, 0, 99999]
+    self.pub.publish(msg)
