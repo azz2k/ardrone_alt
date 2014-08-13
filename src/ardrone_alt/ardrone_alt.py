@@ -14,5 +14,5 @@ class ArdroneAlt():
     # main loop
     while not rospy.is_shutdown():
       r.sleep()
-  def navdata_callback(data):
+  def navdata_callback(self, data):
     print data.altd
