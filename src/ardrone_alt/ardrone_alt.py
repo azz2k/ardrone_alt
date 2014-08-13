@@ -20,7 +20,7 @@ class ArdroneAlt():
     msg.header.frame_id = "base_footprint"
     msg.pose.pose.position.x = 0.0
     msg.pose.pose.position.y = 0.0
-    msg.pose.pose.position.z = data.altd
+    msg.pose.pose.position.z = data.altd * 1e-3
     msg.pose.pose.orientation.x = 1 
     msg.pose.pose.orientation.y = 0 
     msg.pose.pose.orientation.z = 0 
