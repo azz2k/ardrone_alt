@@ -1,0 +1,10 @@
+#!/usr/bin/env python
+
+from ardrone_alt import ardrone_alt
+import rospy
+
+if __name__ == "__main__":
+  try:
+    ardronealt = ardrone_alt.ArdroneAlt()
+  except rospy.ROSInterruptException:
+    pass

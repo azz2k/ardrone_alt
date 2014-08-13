@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package>
+  <name>ardrone_alt</name>
+  <version>0.0.1</version>
+  <description>The ardrone_alt package</description>
+
+  <maintainer email="blum@informatik.hu-berlin.de">Christian Blum</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>rospy</build_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>message_runtime</run_depend>
+</package>

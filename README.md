@@ -1,4 +1,4 @@
-ardrone_alt
-===========
+# Description of ardrone_alt
 
-foo
+ROS package to translate altitude from ardrone_autonomy::Navdata messages to
+nav_msgs::Odometry messages
